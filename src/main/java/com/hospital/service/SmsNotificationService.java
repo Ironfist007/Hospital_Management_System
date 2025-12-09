@@ -42,6 +42,7 @@ public class SmsNotificationService {
             );
             
             Message message = Message.creator(
+                    accountSid,                             // Account SID
                     new PhoneNumber(twilioPhoneNumber),      // From number
                     new PhoneNumber(patientPhone)            // To number
             )
@@ -71,6 +72,7 @@ public class SmsNotificationService {
             );
             
             Message message = Message.creator(
+                    accountSid,                             // Account SID
                     new PhoneNumber(twilioPhoneNumber),      // From number
                     new PhoneNumber(patientPhone)            // To number
             )
@@ -101,6 +103,7 @@ public class SmsNotificationService {
             );
             
             Message message = Message.creator(
+                    accountSid,                             // Account SID
                     new PhoneNumber(twilioPhoneNumber),      // From number
                     new PhoneNumber(patientPhone)            // To number
             )
