@@ -42,11 +42,10 @@ public class SmsNotificationService {
             );
             
             Message message = Message.creator(
-                    accountSid,                             // Account SID
                     new PhoneNumber(twilioPhoneNumber),      // From number
-                    new PhoneNumber(patientPhone)            // To number
+                    new PhoneNumber(patientPhone),           // To number
+                    messageBody                              // Message body
             )
-                    .setBody(messageBody)
                     .create();
             
             log.info("SMS sent successfully with SID: {}", message.getSid());
@@ -72,11 +71,10 @@ public class SmsNotificationService {
             );
             
             Message message = Message.creator(
-                    accountSid,                             // Account SID
                     new PhoneNumber(twilioPhoneNumber),      // From number
-                    new PhoneNumber(patientPhone)            // To number
+                    new PhoneNumber(patientPhone),           // To number
+                    messageBody                              // Message body
             )
-                    .setBody(messageBody)
                     .create();
             
             log.info("SMS sent successfully with SID: {}", message.getSid());
@@ -103,11 +101,10 @@ public class SmsNotificationService {
             );
             
             Message message = Message.creator(
-                    accountSid,                             // Account SID
                     new PhoneNumber(twilioPhoneNumber),      // From number
-                    new PhoneNumber(patientPhone)            // To number
+                    new PhoneNumber(patientPhone),           // To number
+                    messageBody                              // Message body
             )
-                    .setBody(messageBody)
                     .create();
             
             log.info("SMS sent successfully with SID: {}", message.getSid());
