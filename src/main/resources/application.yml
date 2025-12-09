@@ -1,0 +1,75 @@
+spring:
+  application:
+    name: hospital-management-system
+  
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hospital_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          fetch_size: 50
+          batch_size: 10
+    show-sql: false
+  
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 2000
+      jedis:
+        pool:
+          max-active: 8
+          max-idle: 8
+  
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+  error:
+    include-message: always
+    include-binding-errors: always
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+  api-docs:
+    path: /v3/api-docs
+
+logging:
+  level:
+    root: INFO
+    com.hospital: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+# Twilio Configuration
+twilio:
+  account-sid: ${TWILIO_ACCOUNT_SID:your-account-sid}
+  auth-token: ${TWILIO_AUTH_TOKEN:your-auth-token}
+  phone-number: ${TWILIO_PHONE_NUMBER:+1234567890}
+
+# JWT Configuration
+jwt:
+  secret: ${JWT_SECRET:hospital-management-system-secret-key-min-32-chars-required!!!}
+  expiration: 86400000
+
+# Custom Configuration
+hospital:
+  appointment:
+    max-slots-per-day: 10

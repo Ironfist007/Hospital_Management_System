@@ -1,0 +1,46 @@
+name: Build Hospital Management System
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        java-version: ['17']
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    
+    - name: Build with Maven
+      run: |
+        cd hospital-management-system
+        mvn clean package -DskipTests=true
+    
+    - name: Upload JAR artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: hospital-management-system-jar
+        path: hospital-management-system/target/hospital-management-system-1.0.0.jar
+        retention-days: 30
+    
+    - name: Create Release (on tag)
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: hospital-management-system/target/hospital-management-system-1.0.0.jar
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
