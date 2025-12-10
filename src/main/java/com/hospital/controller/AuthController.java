@@ -45,12 +45,8 @@ public class AuthController {
             
             log.info("Login successful for username: {}", authRequest.getUsername());
             return ResponseEntity.ok(response);
-                    .build();
             
-            log.info("User logged in successfully: {}", authRequest.getUsername());
-            return ResponseEntity.ok(response);
-            
-        } catch (AuthenticationException e) {
+        } catch (Exception e) {
             log.error("Authentication failed for username: {}", authRequest.getUsername());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(AuthResponse.builder()
