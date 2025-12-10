@@ -1,12 +1,12 @@
 -- Insert admin user
 -- Password: admin123 (BCrypt encoded: $2a$10$SlYQmyNdGzin7olVN3p5Be7DlH.PKZbv5H8KnzzVgXXbVxzy.vPf2)
-INSERT INTO users (username, email, password, full_name, phone, created_at, updated_at) 
-VALUES ('admin', 'admin@hospital.com', '$2a$10$SlYQmyNdGzin7olVN3p5Be7DlH.PKZbv5H8KnzzVgXXbVxzy.vPf2', 'Administrator', '1234567890', NOW(), NOW())
+INSERT INTO users (username, email, password, enabled) 
+VALUES ('admin', 'admin@hospital.com', '$2a$10$SlYQmyNdGzin7olVN3p5Be7DlH.PKZbv5H8KnzzVgXXbVxzy.vPf2', true)
 ON CONFLICT (username) DO NOTHING;
 
 -- Insert ADMIN role
-INSERT INTO roles (name, created_at, updated_at) 
-VALUES ('ROLE_ADMIN', NOW(), NOW())
+INSERT INTO roles (name) 
+VALUES ('ROLE_ADMIN')
 ON CONFLICT (name) DO NOTHING;
 
 -- Link admin user to ADMIN role
