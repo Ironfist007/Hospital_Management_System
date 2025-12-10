@@ -47,10 +47,10 @@ public class AuthController {
             return ResponseEntity.ok(response);
             
         } catch (Exception e) {
-            log.error("Authentication failed for username: {}", authRequest.getUsername());
+            log.error("Authentication failed for username: {}", authRequest.getUsername(), e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(AuthResponse.builder()
-                            .message("Authentication failed: Invalid credentials")
+                            .message("Authentication failed: " + e.getMessage())
                             .build());
         }
     }
